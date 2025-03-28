@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>Welcome to the Dashboard</h2>
+    <p id="welcome-message"></p>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        // Ambil token dari localStorage
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "index.html"; // Redirect ke halaman login jika token tidak ada
+        }
+
+        // Tampilkan pesan selamat datang
+        document.getElementById("welcome-message").textContent = "You are logged in.";
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "index.html"; // Redirect ke halaman login setelah logout
+        }
+    </script>
+
+</body>
+</html>
