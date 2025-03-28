@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login dan Upload Foto</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <h2>Upload Foto dan Data</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Deskripsi:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="photo">Pilih Foto:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+
+        <button type="submit">Kirim Foto</button>
+    </form>
+
+    <script>
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+            if (data.token) {
+                alert('Login Sukses!');
+                localStorage.setItem('token', data.token); // Simpan token di browser
+            } else {
+                alert(data.error || 'Login gagal');
+            }
+        });
+
+        // Upload Form Submission
+        document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('photo', document.getElementById('photo').files[0]);
+
+            const response = await fetch('http://localhost:3000/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            if (data.message === 'File uploaded successfully') {
+                alert('Foto dan data berhasil dikirim!');
+            } else {
+                alert('Terjadi kesalahan saat mengirim data.');
+            }
+        });
+    </script>
+</body>
+</html>
