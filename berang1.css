@@ -1,0 +1,222 @@
+/* RESET DASAR */
+* {
+  margin: 0;
+  padding: 2;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* LAYOUT UTAMA */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('aset/LATAR\ DIVISI.jpg'); /* Ganti dengan path gambar kamu */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #f3e2e2;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main.content-wrapper {
+  flex: 3;
+  padding: 30px;
+  text-align: center;
+}
+
+/* HEADER / NAVBAR */
+header {
+  background-color: #85eb1094;
+  color: #030101;
+  padding: 10px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo,
+.logo a,
+.logo .logo-text {
+  text-decoration: none;
+}
+
+.logo .logo-text {
+  font-size: 48px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #d33024f3, #ffe66d, #7ecb6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: zoomPulse 2s infinite alternate;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+@keyframes zoomPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* PROFIL DI HEADER */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #f4f7f0 0%, #eee8e5 75%, #e7cd38 100%);
+}
+
+.profile-photo {
+  width: 60px;
+  height: 40px;
+  border-radius: 60%;
+  object-fit: cover;
+}
+
+.profile-info h1 {
+  font-size: 25px;
+  margin: 0;
+}
+
+.profile-info .info {
+  background-color: #e1e7daf6;
+  font-size: 21px;
+  color: #f01515;
+}
+
+#clock {
+  background-color: #e1e7daf6;
+  font-size: 21px;
+  font-weight: bold;
+  color: #3208ee;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* NAVIGASI UTAMA */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  background-color: #3838e7;
+  font-weight: bold;
+  padding: 10px 0;
+  gap: 30px;
+}
+
+.main-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.main-nav a:hover {
+  color: #ffcc00;
+}
+
+/* MARQUEE / TEKS BERJALAN */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #fdfdfc;
+  color: #010007;
+  font-size: 28px;  /* harus pakai satuan px */
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0px; /* jarak bawah supaya tidak nempel divisi */
+  box-sizing: border-box;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 19s linear infinite;
+  white-space: nowrap;
+}
+
+/* Animasi scroll teks */
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* DIVISI */
+.divisi {
+  color: #ffd000;
+  font-weight: bold;
+  min-height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(20px, 4vw, 40px);
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+
+  /* Efek kedip */
+  animation: kedip 0s infinite;
+}
+
+/* Animasi kedip */
+@keyframes kedip {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* KONTEN FOTO / ITEM */
+.photo-item {
+  display: inline-block;
+  margin: 20px;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid #b44848;
+
+  transition: 0.3s;
+  background-color: #07cae4ef;
+  font-size: 27px;
+  font-weight: bold;
+  font-family: 'Roboto', Arial, sans-serif;
+
+}
+
+.photo-item img {
+  width: 200px;      /* lebar tetap */
+  height: 200px;     /* tinggi tetap */
+  object-fit: cover; /* potong gambar supaya proporsional */
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 8px; /* opsional, biar sudutnya agak membulat */
+}
+
+
+.photo-item:hover {
+  transform: scale(1.3);
+}
+
+/* FOOTER */
+footer {
+  background-color: #5151f1;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  font-size: 17px;
+}
